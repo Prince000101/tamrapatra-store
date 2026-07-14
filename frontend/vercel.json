@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://tamrapatra-api.onrender.com/api/:path*" },
+    { "source": "/uploads/:path*", "destination": "https://tamrapatra-api.onrender.com/uploads/:path*" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}

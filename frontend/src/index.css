@@ -1,0 +1,280 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+
+  --color-ivory: #FFFBEB;
+  --color-ivory-light: #FFFDF5;
+  --color-ivory-dark: #FEF3C7;
+  --color-indigo: #312E81;
+  --color-indigo-light: #4338CA;
+  --color-indigo-dark: #1E1B4B;
+  --color-gold: #B8860B;
+  --color-gold-light: #D4A017;
+  --color-gold-dark: #8B6508;
+  --color-plum: #3B0764;
+  --color-plum-light: #581C87;
+  --color-warm-grey: #78716C;
+  --color-warm-grey-light: #A8A29E;
+  --color-amber: #F59E0B;
+  --color-amber-light: #FBBF24;
+  --color-surface: #FFFBEB;
+  --color-surface-dark: #3B0764;
+  --radius-sm: 0.375rem;
+  --radius: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  overflow-x: hidden;
+  background-color: #FFFBEB;
+  color: #312E81;
+}
+
+.dark body,
+body.dark {
+  background-color: #3B0764;
+  color: #FFFBEB;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(5deg) scale(1.02);
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 50% 70% 50%;
+    transform: rotate(-3deg) scale(0.98);
+  }
+  75% {
+    border-radius: 40% 60% 50% 40% / 60% 40% 60% 30%;
+    transform: rotate(7deg) scale(1.01);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(6px) rotate(-1deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes diamond-float {
+  0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.15; }
+  50% { transform: translateY(-15px) rotate(45deg); opacity: 0.3; }
+}
+
+@keyframes pattern-drift {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.12; }
+  90% { opacity: 0.12; }
+  100% { transform: translate(80px, -80px) rotate(20deg); opacity: 0; }
+}
+
+@keyframes gold-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(184, 134, 11, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(184, 134, 11, 0.25); }
+}
+
+@keyframes border-shimmer {
+  0% { border-color: rgba(184, 134, 11, 0.2); }
+  50% { border-color: rgba(184, 134, 11, 0.5); }
+  100% { border-color: rgba(184, 134, 11, 0.2); }
+}
+
+.animate-blob-morph { animation: blob-morph 12s ease-in-out infinite; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.8s ease-out forwards; }
+.animate-fade-in { animation: fade-in 1s ease-out forwards; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.15), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+.animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+.animate-diamond-float { animation: diamond-float 5s ease-in-out infinite; }
+.animate-gold-glow { animation: gold-glow 4s ease-in-out infinite; }
+.animate-border-shimmer { animation: border-shimmer 3s ease-in-out infinite; }
+
+.font-heading { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-body { font-family: 'Outfit', system-ui, sans-serif; }
+
+/* ============================================
+   ORNATE INDIAN PATTERNS
+   ============================================ */
+
+.pattern-rangoli {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(49, 46, 129, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(184, 134, 11, 0.03) 0%, transparent 70%);
+}
+
+.border-ornate {
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  position: relative;
+}
+
+.border-ornate::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(184, 134, 11, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFBEB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B8860B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B6508;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #3B0764;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #D4A017;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #B8860B, #D4A017, #F59E0B, #D4A017, #B8860B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-indigo {
+  background: linear-gradient(135deg, #312E81, #4338CA, #312E81);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-ornate-gradient {
+  background: linear-gradient(135deg, #312E81 0%, #1E1B4B 40%, #3B0764 100%);
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #B8860B, #D4A017, #F59E0B);
+}
+
+/* ============================================
+   GEOMETRIC DECORATIVE ELEMENTS
+   ============================================ */
+
+.deco-diamond {
+  width: 12px;
+  height: 12px;
+  background: rgba(184, 134, 11, 0.3);
+  transform: rotate(45deg);
+}
+
+.deco-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 134, 11, 0.4);
+}
+
+.deco-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.4), transparent);
+}
+
+.deco-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(184, 134, 11, 0.5);
+}
+
+/* Parallax-like scroll helper */
+.parallax-section {
+  will-change: transform;
+}
+
+/* Card hover effects */
+.card-ornate {
+  border: 1px solid rgba(184, 134, 11, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-ornate:hover {
+  border-color: rgba(184, 134, 11, 0.4);
+  box-shadow: 0 8px 40px rgba(49, 46, 129, 0.08), 0 0 20px rgba(184, 134, 11, 0.06);
+}
