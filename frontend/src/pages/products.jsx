@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { ShoppingCart, Heart, Search, SlidersHorizontal, Star, Eye } from "lucide-react";
+import { ShoppingCart, Heart, Search, SlidersHorizontal, Star } from "lucide-react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../hook/CartHook";
 import { useWishlist } from "../context/WishlistContext";
-import QuickViewModal from "../components/QuickViewModal";
 import SEO from "../components/SEO";
 
 export default function Products() {
@@ -18,7 +17,6 @@ export default function Products() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortOption, setSortOption] = useState("latest");
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -140,11 +138,6 @@ export default function Products() {
 
               <div className="relative overflow-hidden">
                 <img src={product.image} alt={product.name} loading="lazy" decoding="async" className="h-48 sm:h-56 md:h-72 w-full object-cover transition duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 flex items-center justify-center bg-indigo/40 opacity-0 transition-all duration-300 group-hover:opacity-100 max-sm:hidden">
-                  <button onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); }} className="flex items-center gap-2 rounded-xl bg-white/95 px-4 sm:px-5 py-2 sm:py-3 font-body font-semibold text-indigo shadow-xl transition hover:scale-105">
-                    <Eye size={16} /> Quick View
-                  </button>
-                </div>
               </div>
 
               <div className="p-4 sm:p-5 md:p-6">
@@ -167,7 +160,6 @@ export default function Products() {
         </div>
       )}
 
-      <QuickViewModal product={selectedProduct} isOpen={selectedProduct !== null} onClose={() => setSelectedProduct(null)} />
     </div>
   );
 }
