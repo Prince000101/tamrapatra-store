@@ -47,14 +47,16 @@ function ProductDetails() {
         if (mounted && data) {
           setProduct(data);
           if (data.variants?.length > 0) setSelectedVariant(data.variants[0]);
-          setRelatedProducts([
-            { _id: "related1", name: "Patola Silk Dupatta", price: 3499, image: "/uploads/02.jpg" },
-            { _id: "related2", name: "Brass Ganesh Idol", price: 2499, image: "/uploads/08.jpg" },
-          ]);
-          setReviews([
-            { id: 1, user: "Rahul K.", rating: 5, comment: "Amazing quality, genuine product!", date: "2 days ago" },
-            { id: 2, user: "Priya S.", rating: 4, comment: "Good packaging, fast delivery.", date: "1 week ago" },
-          ]);
+          try {
+            const allRes = await axios.get("/api/products");
+            const allProducts = Array.isArray(allRes.data) ? allRes.data : [];
+            const related = allProducts
+              .filter((p) => p._id !== data._id)
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 4);
+            setRelatedProducts(related);
+          } catch { setRelatedProducts([]); }
+          setReviews([]);
           const recent = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
           const updatedRecent = [data, ...recent.filter((item) => item._id !== data._id)].slice(0, 5);
           localStorage.setItem("recentlyViewed", JSON.stringify(updatedRecent));
