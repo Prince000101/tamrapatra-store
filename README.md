@@ -4,14 +4,14 @@ Full-stack Indian handicrafts e-commerce app built with React (Vite) + Node.js/E
 
 ---
 
-## URLs (Local Dev)
+## Live Demo
 
-| Service      | URL                              |
-|--------------|----------------------------------|
-| Frontend     | http://localhost:5173            |
-| Backend API  | http://localhost:5000            |
-| Admin Panel  | http://localhost:5173/admin      |
-| Admin Login  | http://localhost:5173/admin/login |
+| URL | Link |
+|---|---|
+| **Frontend** | https://tamrapatra-store.vercel.app/ |
+| **Backend API** | https://tamrapatra-store.onrender.com/api/products |
+| **Admin Panel** | https://tamrapatra-store.vercel.app/admin |
+| **Backend Images** | https://tamrapatra-store.onrender.com/uploads/01.jpg |
 
 ---
 
@@ -21,8 +21,8 @@ Full-stack Indian handicrafts e-commerce app built with React (Vite) + Node.js/E
 
 | Field    | Value             |
 |----------|-------------------|
-| Email    | prince@creatordev.in |
-| Password | Admin@123         |
+| Email    | Set via `ADMIN_EMAIL` env var |
+| Password | Set via `ADMIN_PASSWORD` env var |
 
 The admin account is created by running the seed script. It has full access to the admin dashboard at `/admin` where you can manage products, orders, users, coupons, and reviews.
 
@@ -42,12 +42,11 @@ No default user is seeded. Users must **register themselves** at `/register` on 
 ### 1. Clone & Install
 
 ```bash
-git clone <repo-url>
-cd Tamrapatra
+git clone https://github.com/Prince000101/tamrapatra-store.git
+cd tamrapatra-store
 
 # Backend
 cd backend
-cp .env.example .env   # then edit .env with your values
 npm install
 
 # Frontend
@@ -58,12 +57,12 @@ npm install
 ### 2. Configure `backend/.env`
 
 ```env
-PORT=5000
-MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/Tamrapatra
-JWT_SECRET=<generate with: openssl rand -hex 64>
+PORT=5002
+MONGO_URI=<your-mongodb-atlas-uri>
+JWT_SECRET=<generate-with-openssl-rand-hex-64>
 ADMIN_PASSWORD=<your-admin-password>
-ADMIN_EMAIL=prince@creatordev.in
-CLIENT_URL=http://localhost:5173
+ADMIN_EMAIL=<your-admin-email>
+CLIENT_URL=http://localhost:3002
 ```
 
 ### 3. Seed Database & Run
@@ -72,11 +71,11 @@ CLIENT_URL=http://localhost:5173
 # Terminal 1 — Backend
 cd backend
 npm run seed    # creates admin account + sample products
-npm start       # http://localhost:5000
+npm start       # http://localhost:5002
 
 # Terminal 2 — Frontend
 cd frontend
-npm run dev     # http://localhost:5173
+npm run dev     # http://localhost:3002
 ```
 
 ---
@@ -166,12 +165,12 @@ npm run dev     # http://localhost:5173
 ## Environment Variables (`backend/.env`)
 
 ```env
-PORT=5000
-MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/Tamrapatra
-JWT_SECRET=<random-64-hex>
+PORT=5002
+MONGO_URI=<your-mongodb-atlas-uri>
+JWT_SECRET=<generate-with-openssl-rand-hex-64>
 ADMIN_PASSWORD=<your-admin-password>
-ADMIN_EMAIL=prince@creatordev.in
-CLIENT_URL=http://localhost:5173
+ADMIN_EMAIL=<your-admin-email>
+CLIENT_URL=http://localhost:3002
 ```
 
 ---
@@ -195,15 +194,11 @@ CLIENT_URL=http://localhost:5173
 
 ## Deployment
 
-### Free Tier
-| Service          | Role     | Cost  |
-|------------------|----------|-------|
-| Vercel           | Frontend | Free  |
-| Render           | Backend  | Free  |
-| MongoDB Atlas    | Database | Free  |
-
-### Cheap VPS ($5-6/mo)
-Hetzner CX22, DigitalOcean Basic, or Linode Nanode. Use `pm2` or `docker-compose`.
+| Service | Role | URL | Cost |
+|---|---|---|---|
+| Vercel | Frontend | https://tamrapatra-store.vercel.app | Free |
+| Render | Backend | https://tamrapatra-store.onrender.com | Free |
+| MongoDB Atlas | Database | Cloud hosted | Free |
 
 ---
 
@@ -214,8 +209,8 @@ Hetzner CX22, DigitalOcean Basic, or Linode Nanode. Use `pm2` or `docker-compose
 | MongoDB timeout | Atlas free tier spins down — wait 20s and refresh |
 | Invalid login | Run `npm run seed` first |
 | Module not found | Run `npm install` in both `backend/` and `frontend/` |
-| Port in use | `lsof -ti:5000 \| xargs kill` (Linux/macOS) or `taskkill /PID <pid>` (Windows) |
-| Images not loading | Update product images to use hosted URLs or configure static file serving for `/images` |
+| Port in use | `lsof -ti:5002 \| xargs kill` (Linux/macOS) or `taskkill /PID <pid>` (Windows) |
+| Images not loading | Check that `uploads/` folder exists in `backend/` and is not in `.gitignore` |
 
 ---
 
