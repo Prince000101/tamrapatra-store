@@ -61,7 +61,7 @@ npm install
 PORT=5000
 MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/Tamrapatra
 JWT_SECRET=<generate with: openssl rand -hex 64>
-ADMIN_PASSWORD=Admin@123
+ADMIN_PASSWORD=<your-admin-password>
 ADMIN_EMAIL=prince@creatordev.in
 CLIENT_URL=http://localhost:5173
 ```
@@ -169,7 +169,7 @@ npm run dev     # http://localhost:5173
 PORT=5000
 MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/Tamrapatra
 JWT_SECRET=<random-64-hex>
-ADMIN_PASSWORD=Admin@123
+ADMIN_PASSWORD=<your-admin-password>
 ADMIN_EMAIL=prince@creatordev.in
 CLIENT_URL=http://localhost:5173
 ```
